@@ -11,8 +11,10 @@ function DelayedResponse (req, res, callback) {
     return new DelayedResponse(req, res, callback)
   }
 
-  this.callback = callback
+  this.req = req
   this.res = res
+  this.callback = callback
+
   this.buffer = []
   this.queue = []
   http.ServerResponse.call(this, {
@@ -57,7 +59,7 @@ function flush (self) {
   const res = self.res
   self.buffer = null
 
-  self.callback(self, data, done)
+  self.callback(self.req, self, data, done)
 
   function done (err) {
     if (err) {

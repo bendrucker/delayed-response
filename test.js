@@ -5,7 +5,7 @@ const inject = require('shot').inject
 const DelayedResponse = require('./')
 
 test('success', function (t) {
-  t.plan(6)
+  t.plan(7)
 
   inject(handler, {url: '/'}, function (response) {
     t.equal(response.statusCode, 201)
@@ -20,7 +20,8 @@ test('success', function (t) {
     delayed.end('boop')
   }
 
-  function onResponse (res, data, callback) {
+  function onResponse (req, res, data, callback) {
+    t.equal(req.url, '/')
     t.equal(res.statusCode, 201)
     t.equal(data.toString(), 'boop')
     t.equal(typeof callback, 'function')
@@ -44,7 +45,7 @@ test('writeHead + write', function (t) {
     delayed.end()
   }
 
-  function onResponse (res, data, callback) {
+  function onResponse (req, res, data, callback) {
     t.equal(res.statusCode, 200)
     t.equal(data.toString(), 'boop')
     t.equal(typeof callback, 'function')
@@ -79,7 +80,7 @@ test('error', function (t) {
     delayed.end('boop')
   }
 
-  function onResponse (res, data, callback) {
+  function onResponse (req, res, data, callback) {
     t.equal(res.statusCode, 201)
     t.equal(data.toString(), 'beepboop')
     t.equal(typeof callback, 'function')

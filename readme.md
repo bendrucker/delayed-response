@@ -57,7 +57,7 @@ The original [`http.ServerResponse`](https://nodejs.org/api/http.html#http_class
 
 *Required*  
 Type: `function`  
-Arguments: `delayed, buffer, done`
+Arguments: `req, delayed, buffer, done`
 
 A callback to call with the delayed response, the full data buffer (a `Buffer`), and a `done` function. Passing an error to `done` will cause the delayed request to reset the original response headers and then emit an error. Otherwise, the buffered data is re-sent.
 
