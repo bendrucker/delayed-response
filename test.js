@@ -7,7 +7,7 @@ const DelayedResponse = require('./')
 test('success', function (t) {
   t.plan(7)
 
-  inject(handler, {url: '/'}, function (response) {
+  inject(handler, { url: '/' }).then(function (response) {
     t.equal(response.statusCode, 201)
     t.equal(response.payload, 'boop')
     t.equal(response.headers.foo, 'bar')
@@ -33,7 +33,7 @@ test('success', function (t) {
 test('writeHead + write', function (t) {
   t.plan(5)
 
-  inject(handler, {url: '/'}, function (response) {
+  inject(handler, { url: '/' }).then(function (response) {
     t.equal(response.statusCode, 201)
     t.equal(response.payload, 'boop')
   })
@@ -57,7 +57,7 @@ test('writeHead + write', function (t) {
 test('error', function (t) {
   t.plan(8)
 
-  inject(handler, {url: '/'}, t.fail.bind(t, 'unexpected response'))
+  inject(handler, { url: '/' }).then(t.fail.bind(t, 'unexpected response'))
 
   function handler (req, res) {
     const delayed = DelayedResponse(req, res, onResponse)
