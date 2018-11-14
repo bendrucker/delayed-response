@@ -1,4 +1,4 @@
-# delayed-response [![Build Status](https://travis-ci.org/bendrucker/delayed-response.svg?branch=master)](https://travis-ci.org/bendrucker/delayed-response)
+# delayed-response [![Build Status](https://travis-ci.org/bendrucker/delayed-response.svg?branch=master)](https://travis-ci.org/bendrucker/delayed-response) [![Greenkeeper badge](https://badges.greenkeeper.io/bendrucker/delayed-response.svg)](https://greenkeeper.io/)
 
 > Buffer an HTTP response and execute a function before flushing
 
